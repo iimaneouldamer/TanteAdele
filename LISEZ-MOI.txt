@@ -1,0 +1,77 @@
+PLANNING TANTE ADÈLE : MISE EN LIGNE DU SITE
+============================================
+
+Résultat : une adresse web (par exemple tante-adele.netlify.app). Votre responsable l'ouvre,
+entre son e-mail et son mot de passe, et voit le même planning que vous. Ce que l'un change,
+l'autre le voit en quelques secondes. Tout est gratuit. Comptez 20 à 30 minutes.
+
+Les noms des menus des sites ci-dessous peuvent légèrement changer avec le temps.
+
+Fichiers fournis :
+  - index.html : le site
+  - setup.sql  : prépare la base de données (contient déjà vos 5 employés)
+
+
+PARTIE 1. LA BASE DE DONNÉES (Supabase)
+---------------------------------------
+1. Allez sur supabase.com, cliquez sur "Start your project" et créez un compte gratuit.
+2. Cliquez sur "New project". Nom : tante-adele. Choisissez un mot de passe pour la base
+   (notez-le, vous n'en aurez pas besoin tous les jours). Région : une région d'Europe
+   (Paris ou Francfort). Offre : Free. Cliquez sur "Create new project" et attendez 2 minutes.
+3. Dans le menu de gauche, ouvrez "SQL Editor", puis "New query".
+   Ouvrez le fichier setup.sql, copiez tout son contenu, collez-le, puis cliquez sur "Run".
+   Le message "Success" doit apparaître.
+4. Créez les comptes de connexion : menu "Authentication", puis "Users", puis "Add user",
+   "Create new user". Entrez l'e-mail et un mot de passe, et cochez "Auto Confirm User".
+   Faites-le pour votre responsable et pour vous (et pour toute autre personne qui doit modifier).
+5. IMPORTANT. Toujours dans "Authentication", ouvrez les réglages de connexion ("Sign In / Providers"
+   ou "Settings") et désactivez "Allow new users to sign up". Sinon, n'importe qui qui trouve
+   l'adresse du site pourrait se créer un compte.
+6. Récupérez deux informations : menu "Project Settings", puis "API" (ou "API Keys").
+     - Project URL : ressemble à https://abcdefgh.supabase.co
+     - La clé publique, appelée "anon public" ou "publishable" (très longue).
+   Ne copiez JAMAIS la clé "service_role" ou "secret".
+
+
+PARTIE 2. RELIER LE SITE À LA BASE
+----------------------------------
+1. Ouvrez index.html avec le Bloc-notes (clic droit, "Ouvrir avec", Bloc-notes) ou TextEdit.
+2. Cherchez ces deux lignes, tout en haut du script :
+     var SB_URL='https://VOTRE-PROJET.supabase.co';
+     var SB_KEY='VOTRE-CLE-PUBLIQUE';
+3. Remplacez ce qui est entre les guillemets par votre Project URL et votre clé publique.
+   Gardez les guillemets et le point-virgule. Enregistrez le fichier.
+
+
+PARTIE 3. METTRE LE SITE EN LIGNE (Netlify)
+-------------------------------------------
+1. Mettez index.html seul dans un dossier vide, par exemple "tante-adele-site".
+2. Allez sur app.netlify.com/drop et créez un compte gratuit si on vous le demande.
+3. Glissez le dossier dans la page. Le site est en ligne en quelques secondes.
+4. Pour une adresse plus jolie : "Site configuration", puis "Change site name"
+   (par exemple tante-adele, ce qui donne tante-adele.netlify.app).
+5. Envoyez l'adresse à votre responsable avec son e-mail et son mot de passe.
+
+Pour modifier le site plus tard, glissez à nouveau le dossier dans "Deploys" de votre site Netlify.
+
+
+UTILISATION
+-----------
+- Choisir la boulangerie : Les Halles, Corgnac ou Landouge. Chacune a son équipe.
+- Cliquer sur une case pour saisir les horaires du jour : "Une seule fois dans la journée"
+  ou "Matin et après-midi".
+- "Totaux du mois" : les heures de chaque employé par semaine et pour le mois.
+- Dans l'onglet Équipe, déplacez vos 5 employés vers la bonne boulangerie.
+- Le bouton "Sauvegarder" télécharge une copie de tout le planning.
+  Faites-en une de temps en temps et gardez le fichier.
+
+
+À SAVOIR
+--------
+- La clé publique n'est pas un secret : elle est faite pour être dans la page. Les données sont
+  protégées parce qu'il faut un compte (e-mail + mot de passe) pour les lire.
+- L'offre gratuite de Supabase met le projet en pause après 1 semaine sans aucune visite.
+  Si cela arrive, un bouton "Restore" dans Supabase le réactive, et aucune donnée n'est perdue.
+- Si deux personnes modifient exactement le même mois à la même seconde, la dernière
+  modification enregistrée l'emporte. Le site se met à jour tout seul toutes les quelques secondes.
+- Pour retirer l'accès à quelqu'un : Supabase, "Authentication", "Users", puis supprimer son compte.
